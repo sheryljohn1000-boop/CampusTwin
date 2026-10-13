@@ -5,32 +5,33 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Royal dark palette
+        // Nebula-style deep green-black palette
         night: {
-          DEFAULT: '#0b0d14', // app canvas (deep midnight)
-          raised: '#12141d', // panel / sidebar surface
-          card: '#171a25', // cards & sheets
-          hover: '#1e2230', // hover fill
-          line: '#262a3a', // hairline borders
+          DEFAULT: '#050d0b', // app canvas
+          raised: '#081512', // panel / sidebar surface
+          card: '#0a1a16', // cards & sheets
+          hover: '#0e2420', // hover fill
+          line: '#12352d', // hairline borders
         },
         royal: {
-          DEFAULT: '#8b7cf6', // royal violet — primary accent
-          soft: '#241f38', // violet tint surface
-          deep: '#6d5ce0', // pressed / deeper violet
+          DEFAULT: '#3dd68c', // emerald-mint — primary accent
+          soft: '#07271c', // emerald tint surface
+          deep: '#2ab477', // pressed / deeper
         },
         gold: {
-          DEFAULT: '#d4b570', // antique gold — secondary accent
-          soft: '#2a2517', // gold tint surface
+          DEFAULT: '#a8f0c8', // pale mint — secondary accent
+          soft: '#08271d', // mint tint surface
         },
-        // Neutral text ramp (cool-tinted for the navy base)
+        // Neutral text ramp (green-tinted)
         ink: {
-          DEFAULT: '#eceaf6', // primary text
-          soft: '#a6a4bd', // secondary text
-          faint: '#6d6b85', // tertiary text
+          DEFAULT: '#eef7f2', // primary text
+          soft: '#9fbfb2', // secondary text
+          faint: '#5f7f72', // tertiary text
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        sans: ['"Space Grotesk"', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       fontSize: {
@@ -39,7 +40,7 @@ export default {
       boxShadow: {
         card: '0 1px 2px rgba(0,0,0,0.35)',
         lift: '0 8px 24px rgba(0,0,0,0.45)',
-        'glow-royal': '0 0 18px -4px rgba(139,124,246,0.45)',
+        'glow-royal': '0 0 22px -4px rgba(61,214,140,0.55)',
       },
       borderRadius: {
         card: '14px',

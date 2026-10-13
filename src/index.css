@@ -1,5 +1,3 @@
-@import "leaflet/dist/leaflet.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,15 +8,15 @@
   }
 
   body {
-    background-color: #0b0d14;
-    color: #eceaf6;
-    font-feature-settings: "cv05", "cv08", "cv11";
+    background-color: #050d0b;
+    color: #eef7f2;
+    font-feature-settings: 'cv05', 'cv08', 'cv11';
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 }
 
-/* Minimal scrollbars on the navy base */
+/* Minimal scrollbars on the green-black base */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -27,51 +25,38 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2b2f41;
+  background: #12352d;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3f56;
+  background: #1a4a3e;
 }
 
-/* Leaflet: dark canvas matched to the app */
-.leaflet-container {
-  background-color: #0b0d14;
-  font-family: inherit;
-  outline: none;
+/* Aurora border glow for feature cards (Nebula-style) */
+.glow-ring {
+  position: relative;
+}
+.glow-ring::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(61, 214, 140, 0.5),
+    rgba(61, 214, 140, 0.05) 40%,
+    rgba(168, 240, 200, 0.25) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-.leaflet-control-zoom {
-  border: 1px solid #262a3a !important;
-  border-radius: 10px !important;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
-}
-
-.leaflet-control-zoom a {
-  background-color: #171a25 !important;
-  color: #eceaf6 !important;
-  border-bottom: 1px solid #262a3a !important;
-}
-
-.leaflet-control-zoom a:hover {
-  background-color: #1e2230 !important;
-  color: #ffffff !important;
-}
-
-.leaflet-control-attribution {
-  background: rgba(11, 13, 20, 0.8) !important;
-  color: #6d6b85 !important;
-  font-size: 9px !important;
-  padding: 1px 6px !important;
-}
-
-.leaflet-control-attribution a {
-  color: #a6a4bd !important;
-}
-
-/* Quiet markers */
-.custom-srm-marker {
-  background: transparent !important;
-  border: none !important;
+/* Halftone dot texture (Nebula dotted globes / world maps) */
+.halftone {
+  background-image: radial-gradient(rgba(61, 214, 140, 0.18) 1px, transparent 1px);
+  background-size: 9px 9px;
 }

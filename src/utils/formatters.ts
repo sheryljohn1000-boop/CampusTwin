@@ -50,34 +50,34 @@ export function getOccupancyColor(level: OccupancyLevel): {
       };
     case 'high':
       return {
-        badgeBg: 'bg-amber-400/15',
-        badgeText: 'text-amber-300 font-semibold',
-        badgeBorder: 'border-amber-400/50',
-        dotColor: 'bg-amber-300',
-        glowColor: 'rgba(252, 211, 77, 0.6)',
-        svgFill: '#fcd34d',
-        svgStroke: '#fde68a',
+        badgeBg: 'bg-gold/15',
+        badgeText: 'text-gold font-semibold',
+        badgeBorder: 'border-gold/50',
+        dotColor: 'bg-gold',
+        glowColor: 'rgba(168, 240, 200, 0.6)',
+        svgFill: '#a8f0c8',
+        svgStroke: '#c9f5de',
       };
     case 'moderate':
       return {
-        badgeBg: 'bg-sky-400/15',
-        badgeText: 'text-sky-300 font-semibold',
-        badgeBorder: 'border-sky-400/50',
-        dotColor: 'bg-sky-300',
-        glowColor: 'rgba(125, 211, 252, 0.55)',
-        svgFill: '#7dd3fc',
-        svgStroke: '#bae6fd',
+        badgeBg: 'bg-royal/15',
+        badgeText: 'text-royal font-semibold',
+        badgeBorder: 'border-royal/50',
+        dotColor: 'bg-royal',
+        glowColor: 'rgba(61, 214, 140, 0.55)',
+        svgFill: '#3dd68c',
+        svgStroke: '#7fe7bb',
       };
     case 'low':
     default:
       return {
-        badgeBg: 'bg-emerald-400/15',
-        badgeText: 'text-emerald-300 font-medium',
-        badgeBorder: 'border-emerald-400/50',
-        dotColor: 'bg-emerald-300',
-        glowColor: 'rgba(110, 231, 183, 0.5)',
-        svgFill: '#6ee7b7',
-        svgStroke: '#a7f3d0',
+        badgeBg: 'bg-emerald-400/10',
+        badgeText: 'text-royal font-medium',
+        badgeBorder: 'border-emerald-400/40',
+        dotColor: 'bg-royal/70',
+        glowColor: 'rgba(61, 214, 140, 0.4)',
+        svgFill: '#2ab477',
+        svgStroke: '#5fd8a2',
       };
   }
 }
