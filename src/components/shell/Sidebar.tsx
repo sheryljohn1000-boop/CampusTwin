@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { useUiStore } from '../../store/uiStore';
 import {
   HomeIcon,
-  StairsIcon,
   CupIcon,
   BellIcon,
   ChartIcon,
 } from '../ui/LineIcons';
 
-type AppPage = 'overview' | 'ground' | 'cafeteria' | 'alerts' | 'insights';
+type AppPage = 'overview' | 'cafeteria' | 'alerts' | 'insights';
 
 const NAV_ITEMS: { id: AppPage; name: string; icon: React.FC<{ className?: string; strokeWidth?: number }> }[] = [
   { id: 'overview', name: 'Overview', icon: HomeIcon },
-  { id: 'ground', name: 'Ground Floor', icon: StairsIcon },
   { id: 'cafeteria', name: 'Cafeteria', icon: CupIcon },
   { id: 'alerts', name: 'Alerts', icon: BellIcon },
   { id: 'insights', name: 'Insights', icon: ChartIcon },

@@ -17,33 +17,26 @@ function withinComfort(value: number, [lo, hi]: [number, number]): boolean {
 }
 
 export const Overview: React.FC = () => {
-  const ground = useSensorStore((s) => s.ground);
   const cafeteria = useSensorStore((s) => s.cafeteria);
-  const smartLightingOn = useSensorStore((s) => s.smartLightingOn);
   const dataMode = useSensorStore((s) => s.dataMode);
   const lastUpdateTs = useSensorStore((s) => s.lastUpdateTs);
   const alerts = useActiveAlerts();
   const setPage = useUiStore((s) => s.setPage);
 
   // Statuses
-  const groundOk =
-    withinComfort(ground.temperatureC, COMFORT_TEMP) &&
-    withinComfort(ground.relativeHumidity, COMFORT_HUM);
   const cafOk =
     withinComfort(cafeteria.temperatureC, COMFORT_TEMP) && cafeteria.noiseDb < 80;
-  const buildingStatus = groundOk && cafOk ? 'good' : 'warn';
-  const buildingLabel = groundOk && cafOk ? 'Normal' : 'Attention';
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-5 lg:px-6">
       <PageHeader
         title="TP1 Smart Building Twin"
-        subtitle="Turing Hall · Ground Floor & Cafeteria — sensor demo (no hardware connected yet)"
+        subtitle="Turing Hall · Cafeteria — sensor demo (no hardware connected yet)"
         mode={dataMode}
         ts={lastUpdateTs}
       />
 
-      {/* Top: building-wide status cards */}
+      {/* Cafeteria status */}
       <SectionTitle
         right={
           <button
@@ -57,38 +50,18 @@ export const Overview: React.FC = () => {
       >
         Building status
       </SectionTitle>
-      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
         <StatusCard
-          title="TP1 · Overall building"
-          statusLabel={buildingLabel}
-          statusTone={buildingStatus as 'good' | 'warn'}
+          title="TP1 · Cafeteria"
+          statusLabel={cafOk ? 'Comfortable' : 'Attention'}
+          statusTone={cafOk ? 'good' : 'warn'}
           rows={[
-            { label: 'Ground floor', value: groundOk ? 'Comfortable' : 'Out of band' },
-            { label: 'Cafeteria', value: cafOk ? 'Comfortable' : 'Check conditions' },
-            {
-              label: 'Zones monitored',
-              value: '2',
-            },
+            { label: 'Environment', value: cafOk ? 'Comfortable' : 'Check conditions' },
+            { label: 'People', value: `${cafeteria.peopleCount}` },
+            { label: 'Noise', value: `${cafeteria.noiseDb} dB` },
             { label: 'Feed', value: dataMode === 'LIVE DATA' ? 'LIVE' : 'SIM' },
           ]}
-          onClick={() => setPage('ground')}
-        />
-
-        <StatusCard
-          title="Ground Floor"
-          statusLabel={groundOk ? 'Comfortable' : 'Check env'}
-          statusTone={groundOk ? 'good' : 'warn'}
-          rows={[
-            { label: 'Temperature', value: `${ground.temperatureC.toFixed(1)}°C` },
-            { label: 'Humidity', value: `${ground.relativeHumidity}% RH` },
-            { label: 'Ambient light', value: `${ground.lightLux} lux` },
-            {
-              label: 'Motion',
-              value: ground.motionDetected ? 'Detected' : 'None',
-              dot: ground.motionDetected ? 'bg-gold' : undefined,
-            },
-          ]}
-          onClick={() => setPage('ground')}
+          onClick={() => setPage('cafeteria')}
         />
 
         <StatusCard
@@ -104,42 +77,26 @@ export const Overview: React.FC = () => {
         />
       </div>
 
-      {/* Middle: environment strip */}
+      {/* Cafeteria environment strip */}
       <div className="mt-6">
-        <SectionTitle>Current environment · whole building</SectionTitle>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4 lg:grid-cols-6">
+        <SectionTitle>Current environment · cafeteria</SectionTitle>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4">
           <MetricTile
-            label="Temp (avg)"
-            value={`${((ground.temperatureC + cafeteria.temperatureC) / 2).toFixed(1)}°C`}
+            label="Temperature"
+            value={`${cafeteria.temperatureC.toFixed(1)}°C`}
             tone="sky"
           />
           <MetricTile
-            label="Humidity (avg)"
-            value={`${Math.round((ground.relativeHumidity + cafeteria.relativeHumidity) / 2)}% RH`}
+            label="Humidity"
+            value={`${cafeteria.relativeHumidity}% RH`}
             tone="royal"
           />
           <MetricTile
-            label="Light (ground)"
-            value={`${ground.lightLux} lux`}
-            tone="gold"
-          />
-          <MetricTile
-            label="Smart lighting"
-            value={smartLightingOn ? 'On' : 'Off'}
-            sub={smartLightingOn ? 'motion + dark' : 'no trigger'}
-            tone={smartLightingOn ? 'gold' : 'neutral'}
-          />
-          <MetricTile
-            label="Motion (ground)"
-            value={ground.motionDetected ? 'Active' : 'Clear'}
-            tone={ground.motionDetected ? 'amber' : 'neutral'}
-          />
-          <MetricTile
-            label="Est. TP1 people"
+            label="Occupancy"
             value={`${cafeteria.peopleCount}`}
-            sub="cafeteria only"
             tone="royal"
           />
+          <MetricTile label="Noise" value={`${cafeteria.noiseDb} dB`} tone="amber" />
         </div>
       </div>
 
