@@ -7,11 +7,12 @@ import {
   ChartIcon,
 } from '../ui/LineIcons';
 
-type AppPage = 'overview' | 'cafeteria' | 'alerts' | 'insights';
+type AppPage = 'overview' | 'cafeteria' | 'peakHours' | 'alerts' | 'insights';
 
 const NAV_ITEMS: { id: AppPage; name: string; icon: React.FC<{ className?: string; strokeWidth?: number }> }[] = [
   { id: 'overview', name: 'Overview', icon: HomeIcon },
   { id: 'cafeteria', name: 'Cafeteria', icon: CupIcon },
+  { id: 'peakHours', name: 'Peak Hours', icon: ChartIcon },
   { id: 'alerts', name: 'Alerts', icon: BellIcon },
   { id: 'insights', name: 'Insights', icon: ChartIcon },
 ];

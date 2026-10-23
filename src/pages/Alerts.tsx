@@ -4,7 +4,7 @@ import { useSensorStore, useActiveAlerts } from '../store/sensorStore';
 import { PageHeader } from '../components/ui/Primitives';
 
 export const Alerts: React.FC = () => {
-  const alerts = useActiveAlerts();
+  const alerts = useActiveAlerts().filter((alert) => alert.zoneId === 'tp1-cafeteria');
   const dismissAlert = useSensorStore((s) => s.dismissAlert);
   const dataMode = useSensorStore((s) => s.dataMode);
   const lastUpdateTs = useSensorStore((s) => s.lastUpdateTs);
@@ -13,7 +13,7 @@ export const Alerts: React.FC = () => {
     <div className="mx-auto w-full max-w-6xl px-4 py-5 lg:px-6">
       <PageHeader
         title="Alerts & Warnings"
-        subtitle="Threshold breaches across TP1 Ground Floor and Cafeteria"
+        subtitle="Threshold breaches for the TP1 Cafeteria"
         mode={dataMode}
         ts={lastUpdateTs}
       />

@@ -4,6 +4,7 @@ type AppPage =
   | 'overview'
   | 'ground'
   | 'cafeteria'
+  | 'peakHours'
   | 'sensorData'
   | 'alerts'
   | 'insights'

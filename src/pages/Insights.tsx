@@ -15,7 +15,7 @@ const CATEGORY_META: Record<
 };
 
 export const Insights: React.FC = () => {
-  const insights = useSensorStore((s) => s.insights);
+  const insights = useSensorStore((s) => s.insights).filter((insight) => insight.zoneName === 'TP1 Cafeteria');
   const dataMode = useSensorStore((s) => s.dataMode);
   const lastUpdateTs = useSensorStore((s) => s.lastUpdateTs);
 

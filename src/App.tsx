@@ -7,11 +7,13 @@ import { GroundFloor } from './pages/GroundFloor';
 import { Cafeteria } from './pages/Cafeteria';
 import { Alerts } from './pages/Alerts';
 import { Insights } from './pages/Insights';
+import { PeakHours } from './pages/PeakHours';
 
 const PAGES: Record<string, React.ComponentType> = {
   overview: Overview,
   ground: GroundFloor,
   cafeteria: Cafeteria,
+  peakHours: PeakHours,
   alerts: Alerts,
   insights: Insights,
 };
